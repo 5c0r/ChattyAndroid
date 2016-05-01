@@ -9,7 +9,7 @@ public class Message {
 
     public Message(String sender, String message) {
         this.sender = sender;
-        this.message = message;
+        this.message = message.isEmpty() || message.length() == 0 ? "Unknown User" : message;
     }
 
     public Message(){

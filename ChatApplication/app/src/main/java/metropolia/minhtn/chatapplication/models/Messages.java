@@ -25,11 +25,26 @@ public class Messages {
         return messages;
     }
 
+    public void addMessage(Message m){
+        messageList.add(m);
+
+    }
+
+    public void notifyObservers() {
+        for(MessageObserver o:observers){
+            o.refresh();
+        }
+    }
+
+    public void registerObservers( MessageObserver o){
+        observers.add(o);
+    }
+
     public int size(){
         return messageList.size();
     }
 
     public Message get(int pos){
-        return messages.get(pos);
+        return messageList.get(pos);
     }
 }

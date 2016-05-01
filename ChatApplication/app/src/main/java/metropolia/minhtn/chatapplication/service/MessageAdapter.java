@@ -22,6 +22,7 @@ public class MessageAdapter extends BaseAdapter implements ListAdapter {
 
     public MessageAdapter(Context ctx,Messages messages) {
         this.ctx = ctx;
+        this.messages = messages;
     }
 
     @Override
@@ -45,7 +46,7 @@ public class MessageAdapter extends BaseAdapter implements ListAdapter {
 
         if ( row == null ) {
             LayoutInflater inflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            inflater.inflate(R.layout.message_row,parent,false);
+            row =inflater.inflate(R.layout.message_row,parent,false);
         }
         Message m = messages.get(position);
 
