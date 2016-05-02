@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="metropolia.minhtn.chatapplication.PublicChatActivity"
-    >
+    android:background="#80deea">
 
     <LinearLayout
         android:orientation="vertical"
@@ -26,7 +26,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Button"
+                android:text="Private"
                 android:id="@+id/button" />
 
             <Spinner
@@ -57,7 +57,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Send"
-                android:id="@+id/btnSend" />
+                android:id="@+id/btnSend"
+                android:background="#eb14ef" />
         </LinearLayout>
 
     </LinearLayout>

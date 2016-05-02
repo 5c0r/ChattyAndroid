@@ -33,6 +33,7 @@ import com.koushikdutta.async.http.AsyncHttpPost;
 import com.koushikdutta.async.http.AsyncHttpResponse;
 import com.koushikdutta.async.http.body.JSONObjectBody;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -227,14 +228,24 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         e.printStackTrace();
                         return;
                     }
-
-                    // todo : check if loginSuccessful is trueeeeeeeeeeeee
-                    isLoggedIn = true;
-
+//
+//                    // todo : check if loginSuccessful is trueeeeeeeeeeeee
+//                    isLoggedIn = true;
+//
                     Log.d("Res", result.toString());
-                    Log.d("Test", result.toString());
-
-                    startChatActivity();
+//                    Log.d("Test", result.toString());
+//
+//                    startChatActivity();
+                    try{
+                        if(result.getBoolean("loginSuccessful") == true) {
+                            isLoggedIn = true;
+                            String fullName = String.format("%s %s",result.getString("firstName"),result.getString("lastName"));
+                            startChatActivity(fullName);
+                        }
+                    } catch (JSONException ex){
+                        Log.d("D","ERR when parsing json from response");
+                        ex.printStackTrace();
+                    }
 
 
                 }
@@ -250,7 +261,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
     }
 
-    public void startChatActivity() {
+    public void startChatActivity(String fullName) {
         Log.d("TAG", "starting chat activity");
         if(isLoggedIn){
             Log.d("act","Start activity");

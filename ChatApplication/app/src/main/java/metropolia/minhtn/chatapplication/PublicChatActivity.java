@@ -96,15 +96,15 @@ public class PublicChatActivity extends AppCompatActivity implements MessageObse
                         try {
                             JSONObject json = new JSONObject(s);
                             String message = "";
+                            String[] split = new String[] {};
                             if(json.has("message")){
                                 message = json.getString("message");
+                                split = message.split(":");
+                                messages.addMessage(new Message(split[0],split[1]));
                             }   else if( json.has("users")){
-
+                                Log.d("USER","new usersss");
                             }
 
-                            Log.d("message",message);
-                            String[] split = message.split(":");
-                            messages.addMessage(new Message(split[0],split[1]));
                             PublicChatActivity.this.runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
