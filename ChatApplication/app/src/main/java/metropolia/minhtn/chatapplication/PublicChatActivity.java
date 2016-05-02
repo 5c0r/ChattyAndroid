@@ -95,7 +95,12 @@ public class PublicChatActivity extends AppCompatActivity implements MessageObse
                         Log.d("msss",s);
                         try {
                             JSONObject json = new JSONObject(s);
-                            String message = json.getString("message");
+                            String message = "";
+                            if(json.has("message")){
+                                message = json.getString("message");
+                            }   else if( json.has("users")){
+
+                            }
 
                             Log.d("message",message);
                             String[] split = message.split(":");
