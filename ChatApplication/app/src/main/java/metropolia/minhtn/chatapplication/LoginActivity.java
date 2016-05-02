@@ -266,6 +266,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         if(isLoggedIn){
             Log.d("act","Start activity");
             Intent i = new Intent(this,PublicChatActivity.class);
+            i.putExtra("fullName",fullName);
             startActivity(i);
         }
 
