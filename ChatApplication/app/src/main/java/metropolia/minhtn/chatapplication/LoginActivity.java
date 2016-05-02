@@ -253,7 +253,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 startActivity(i);
             }*/
 
-            //showProgress(false);
+            showProgress(false);
         }
     }
 
@@ -264,7 +264,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             Intent i = new Intent(this,PublicChatActivity.class);
             startActivity(i);
         }
-        showProgress(false);
+
     }
 
     private boolean isEmailValid(String email) {
