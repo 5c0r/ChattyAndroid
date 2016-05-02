@@ -3,22 +3,19 @@ package metropolia.minhtn.chatapplication;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
-
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.AsyncTask;
-
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -38,9 +35,6 @@ import com.koushikdutta.async.http.body.JSONObjectBody;
 
 import org.json.JSONObject;
 
-import java.io.DataOutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -97,6 +91,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
+        //when the login button is clicked
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -215,26 +210,26 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             JSONObjectBody body = new JSONObjectBody(params);
 
             url.setBody(body);
-            AsyncHttpClient.getDefaultInstance().executeJSONObject(url,new AsyncHttpClient.JSONObjectCallback(){
+            AsyncHttpClient.getDefaultInstance().executeJSONObject(url, new AsyncHttpClient.JSONObjectCallback() {
 
                 @Override
                 public void onConnect(AsyncHttpResponse response) {
-                    Log.d("ResponseConnect",response.message());
+                    Log.d("ResponseConnect", response.message());
                     super.onConnect(response);
                 }
 
                 @Override
                 public void onProgress(AsyncHttpResponse response, long downloaded, long total) {
 
-                    Log.d("ResponseProgress",response.message());
+                    Log.d("ResponseProgress", response.message());
                     super.onProgress(response, downloaded, total);
                 }
 
                 @Override
                 public void onCompleted(Exception e, AsyncHttpResponse source, JSONObject result) {
 //                    Log.d("ErrResp",result.toString());
-                    if( e != null ){
-                        Log.d("Err",e.getMessage());
+                    if (e != null) {
+                        Log.d("Err", e.getMessage());
 
                         e.printStackTrace();
                         return;
@@ -243,19 +238,33 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     // todo : check if loginSuccessful is trueeeeeeeeeeeee
                     isLoggedIn = true;
 
-                    Log.d("Res",result.toString());
-                    Log.d("Test",result.toString());
+                    Log.d("Res", result.toString());
+                    Log.d("Test", result.toString());
+
+                    startChatActivity();
+
+
                 }
             });
 
-            if(isLoggedIn){
+            /*if(isLoggedIn){
                 Log.d("act","Start activity");
                 Intent i = new Intent(this,PublicChatActivity.class);
                 startActivity(i);
-            }
+            }*/
 
-            showProgress(false);
+            //showProgress(false);
         }
+    }
+
+    public void startChatActivity() {
+        Log.d("TAG", "starting chat activity");
+        if(isLoggedIn){
+            Log.d("act","Start activity");
+            Intent i = new Intent(this,PublicChatActivity.class);
+            startActivity(i);
+        }
+        showProgress(false);
     }
 
     private boolean isEmailValid(String email) {
