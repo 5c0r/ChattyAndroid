@@ -240,6 +240,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         if(result.getBoolean("loginSuccessful") == true) {
                             isLoggedIn = true;
                             String fullName = String.format("%s %s",result.getString("firstName"),result.getString("lastName"));
+                            Log.d("TAG", fullName);
                             startChatActivity(fullName);
                         }
                     } catch (JSONException ex){

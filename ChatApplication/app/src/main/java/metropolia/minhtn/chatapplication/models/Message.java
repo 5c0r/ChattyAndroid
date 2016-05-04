@@ -1,5 +1,7 @@
 package metropolia.minhtn.chatapplication.models;
 
+import android.util.Log;
+
 /**
  * Created by nmt19 on 5/1/2016.
  */
@@ -10,6 +12,7 @@ public class Message {
     public Message(String sender, String message) {
         this.sender = sender;
         this.message = message.isEmpty() || message.length() == 0 ? "Unknown User" : message;
+        Log.d("TAG","message: " + message);
     }
 
     public Message(){
